@@ -1,6 +1,6 @@
 local lastCheckTime = 0;
 local checkInterval = 0.2;
-EliteWarrior.TTD = CreateFrame("Frame", nil, UIParent);
+EliteWarriorTTD = CreateFrame("Frame", nil, UIParent);
 
 local inCombat = false;
 
@@ -68,14 +68,14 @@ function onUpdate(sinceLastUpdate)
         lastCheckTime = 0;
     end
 end
-EliteWarrior.TTD:SetScript("OnUpdate", function(self) if inCombat then onUpdate(timeSinceLastUpdate); end; end);
+EliteWarriorTTD:SetScript("OnUpdate", function(self) if inCombat then onUpdate(timeSinceLastUpdate); end; end);
 
-EliteWarrior.TTD:SetScript("OnShow", function(self)
+EliteWarriorTTD:SetScript("OnShow", function(self)
     timeSinceLastUpdate = 0
 end)
 
 
-EliteWarrior.TTD:SetScript("OnEvent", function()
+EliteWarriorTTD:SetScript("OnEvent", function()
     if event == "PLAYER_REGEN_DISABLED" then
         combatStart = GetTime();
         inCombat = true;
@@ -90,6 +90,6 @@ EliteWarrior.TTD:SetScript("OnEvent", function()
         inCombat = false;
     end
 end);
-EliteWarrior.TTD:RegisterEvent("PLAYER_REGEN_ENABLED");
-EliteWarrior.TTD:RegisterEvent("PLAYER_REGEN_DISABLED");
-EliteWarrior.TTD:RegisterEvent("PLAYER_DEAD");
+EliteWarriorTTD:RegisterEvent("PLAYER_REGEN_ENABLED");
+EliteWarriorTTD:RegisterEvent("PLAYER_REGEN_DISABLED");
+EliteWarriorTTD:RegisterEvent("PLAYER_DEAD");
